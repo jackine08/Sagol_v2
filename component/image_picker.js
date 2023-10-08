@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import axios from 'axios';
 
-const ShowPicker = () => {
+function StartLibrary() {
   //launchImageLibrary : 사용자 앨범 접근
   launchImageLibrary({}, async (res) => {
     const formdata = new FormData()
@@ -21,16 +21,15 @@ const ShowPicker = () => {
       'Content-Type': 'multipart/form-data',
     };
 
-    console.log(formdata);
-    axios.post("http://192.168.0.95:3002/images/upload", formdata, {headers: headers})
+    // console.log(formdata);
+    // axios.post("http://192.168.0.95:3002/images/upload", formdata, {headers: headers})
   })
+}
+const ShowPicker = () => {
 
   return (
-    <View style={styles.container}>
-      <View style={styles.countContainer}>
-        <Text>Count:</Text>
-      </View>
-      <TouchableOpacity style={styles.button} onPress={()=>{ShowPicker()}}>
+    <View>
+      <TouchableOpacity style={styles.button} onPress={()=>{StartLibrary()}}>
         <Text>Press Here</Text>
       </TouchableOpacity>
     </View>
