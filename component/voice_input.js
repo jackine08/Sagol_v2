@@ -5,7 +5,6 @@ import {Button, SafeAreaView, StyleSheet, Text, TextInput} from 'react-native';
 const Voice_input = () => {
   const [text, onChangeText] = React.useState('예시) 손 위에 앉아있는 고슴도치');
   const [description, setDescription] = React.useState("default description");
-  const request_description = async ()=> {}//{setDescription(await Get_description())};
 
   return (
     <SafeAreaView>
@@ -14,7 +13,6 @@ const Voice_input = () => {
         onChangeText={onChangeText}
         value={text}
       />
-      <Button onPress={request_description} title='request description'></Button>
       <Text>{description}</Text>
     </SafeAreaView>
   );

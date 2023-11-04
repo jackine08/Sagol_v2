@@ -36,7 +36,7 @@ const ShowPicker = () => {
   return (
     <View>
       <TouchableOpacity style={styles.button} onPress={()=>{StartLibrary()}}>
-        <Text>Press Here</Text>
+        <Text>사진 업로드</Text>
       </TouchableOpacity>
     </View>
   );
