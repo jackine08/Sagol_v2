@@ -16,7 +16,7 @@ function Page_Main({ navigation }) {
       <Voice_input></Voice_input>
       <Voice_recognition></Voice_recognition> 
       <ShowPicker></ShowPicker>
-      <Recent_images_grid_view navigation={navigation}></Recent_images_grid_view>
+      {/* <Recent_images_grid_view navigation={navigation}></Recent_images_grid_view> */}
 
     </SafeAreaView>
   );

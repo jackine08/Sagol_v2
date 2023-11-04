@@ -7,7 +7,7 @@ function Get_best_picture() {
     const body = {query: "questions~~~"}
 
     try {
-        const res = axios.post("192.168.216.1:3002/Get_best_picture", body)
+        const res = axios.post("http://bf.hcailab.uos.ac.kr/Get_best_picture", body)
 
     } catch (error) {
         console.error(error)
