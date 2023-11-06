@@ -7,8 +7,8 @@ import { setItem, getItem } from './storage';
 function StartLibrary() {
   //launchImageLibrary : 사용자 앨범 접근
   launchImageLibrary({}, async (res) => {
+    console.log(res);
     const formdata = new FormData()
-    console.log(getItem("example"));
     const file = {
       name: res?.assets?.[0]?.fileName,
       type: res?.assets?.[0]?.type,
@@ -21,16 +21,16 @@ function StartLibrary() {
     const headers = {
       'Content-Type': 'multipart/form-data',
     };
-
+ 
     console.log(formdata);
-    res = await axios.post("http://bf.hcailab.uos.ac.kr/images/test", formdata, {headers: headers})
+    const bf_res = await axios.post("http://bf.hcailab.uos.ac.kr/images/test", formdata, {headers: headers});
     console.log("data sent");
     // console.log(res["data"]["description"]);
-    setItem(file.name, res["data"]["description"]);
-    const qwe = await getItem(file.name);
-    console.log("storage 확인" + qwe);
+    await setItem(file.name, bf_res["data"]["description"]);
+    const storage_result = await getItem(file.name);
+    console.log("storage 확인" + storage_result);
   })
-}
+};
 
 const ShowPicker = () => {
   return (
