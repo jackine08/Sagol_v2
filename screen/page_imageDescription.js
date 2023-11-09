@@ -3,7 +3,7 @@ import { Button, SafeAreaView, Text, View, Alert, Image } from 'react-native';
 
 function Page_imageDescription({ route }) {
   const { path, description } = route.params;
-  console.log("in PAGE " + path);
+  // console.log("in PAGE " + path);
 
   return (
     <SafeAreaView>

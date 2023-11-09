@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Image, FlatList } from 'react-native';
 import RNFS, { PicturesDirectoryPath } from 'react-native-fs';
 import { PermissionsAndroid } from 'react-native';
-import { setItem, getItem } from './storage';
 
 async function get_picture_data() {
   const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE);
