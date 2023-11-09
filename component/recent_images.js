@@ -1,39 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, SafeAreaView, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, SafeAreaView, FlatList, StyleSheet } from 'react-native';
 import get_picture_data from "./GalleryPicker";
 import { getItem } from './storage';
-
-function Item({ navigation, path, name }) {
-  const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    const fetchDescription = async () => {
-      try {
-        const storedDescription = await getItem(name);
-        setDescription(storedDescription);
-        console.log(name);
-      } catch (error) {
-        console.error("Error fetching description:", error);
-      }
-    };
-
-    fetchDescription();
-  }, [name]);
-
-  return (
-    <TouchableOpacity onPress={() => navigation.navigate('Page_imageDescription', { path, description })}>
-      <View
-        style={{
-          backgroundColor: '#f9c2ff',
-          padding: 10,
-          marginVertical: 8,
-          marginHorizontal: 30,
-        }}>
-        <Image source={{ uri: 'file://' + path }} style={styles.image} />
-      </View>
-    </TouchableOpacity>
-  );
-}
+import ImageItem from './image_item';
 
 const Recent_images_grid_view = ({ navigation }) => {
   const [localData, setLocalData] = useState([]);
@@ -53,23 +22,21 @@ const Recent_images_grid_view = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ marginTop: 0 }}>
-      <>
-        <View>
-          <FlatList
-            data={localData}
-            keyExtractor={(item) => item.name}
-            renderItem={({ item }) => <Item path={item.path} name={item.name} navigation={navigation} />}
-          />
-        </View>
-      </>
+      <FlatList
+        data={localData}
+        keyExtractor={(item) => item.name}
+        renderItem={({ item }) => <ImageItem path={item.path} name={item.name} navigation={navigation} />}
+        numColumns={2} // 여기에 numColumns 속성을 추가해 두 개의 열로 표시할 수 있도록 설정
+        contentContainerStyle={styles.flatListContainer}
+      />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  image: {
-    width: 100,
-    height: 100,
+  flatListContainer: {
+    justifyContent: 'space-between', // 각 열을 여백으로 나눔
+    paddingHorizontal: 16, // 가장자리 여백
   },
 });
 
