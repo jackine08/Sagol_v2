@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, SafeAreaView, Text, View, Alert, Image } from 'react-native';
 
 function Page_imageDescription({ route }) {
-  const { path, description } = route.params;
+  const { path, description, name } = route.params;
   // console.log("in PAGE " + path);
 
   return (
@@ -17,6 +17,7 @@ function Page_imageDescription({ route }) {
           title="다시 듣기"
           onPress={() => Alert.alert('재생중')}
         />
+        <Text>{name}</Text>
       </View>
     </SafeAreaView>
   );

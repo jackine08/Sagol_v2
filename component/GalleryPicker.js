@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import { View, Image, FlatList } from 'react-native';
 import RNFS, { PicturesDirectoryPath } from 'react-native-fs';
 import { PermissionsAndroid } from 'react-native';
 
