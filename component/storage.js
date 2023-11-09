@@ -19,3 +19,17 @@ export const getItem = async (key) => {
     throw e;
   }
 };
+
+export const getAllItems = async () => {
+  try {
+    // 모든 키를 가져온다
+    const keys = await AsyncStorage.getAllKeys();
+
+    // 키에 해당하는 값들을 가져온다
+    const items = await AsyncStorage.multiGet(keys);
+
+    return items;
+  } catch (error) {
+    throw error;
+  }
+};
