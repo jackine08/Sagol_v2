@@ -23,7 +23,6 @@ async function get_picture_data() {
       imageFiles_d.forEach(file => {
         for_save.push({
           "path": file.path,
-          "description": "many many descriptions",
           "name": file.name
         });
       });
