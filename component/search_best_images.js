@@ -32,25 +32,26 @@ const SearchBestImages = ({ navigation }) => {
     return text.split(' ');
   };
 
-  const handleQuery = () => {
+  const handleQuery = async () => {
     if (query.trim() === '') {
       setResults(['Query is empty']);
       return;
     }
-
+  
     const queryTokens = tokenize(query);
-
+  
     // 가장 유사한 키 찾기
     const sortedResults = tfMatrix.map((item) => ({
       key: item.key,
       similarity: calculateSimilarity(queryTokens, item.tokens),
     })).sort((a, b) => b.similarity - a.similarity);
-
+  
     // 상위 10개 결과 저장
     const topResults = sortedResults.slice(0, 10).map(result => result.key);
-
+  
     setResults(topResults);
-    // console.log(results);
+    // 페이지 전환
+    navigation.navigate('Page_Results', { results: topResults });
   };
 
   const calculateSimilarity = (queryTokens, itemTokens) => {
@@ -66,10 +67,7 @@ const SearchBestImages = ({ navigation }) => {
         value={query}
         onChangeText={(text) => setQuery(text)}
       />
-      <Button title="Search" onPress={() => {
-                                                handleQuery();
-                                                navigation.navigate('Page_Results', { results });
-                                                } }/>
+      <Button title="Search" onPress={() => {handleQuery()}}/>
     </View>
   );
 };

@@ -6,8 +6,7 @@ import ImageItem from '../component/image_item';
 
 function Page_Results ({ route }) {
   const Data = route.params.results;
-  // console.log(route.params.results);
-  console.log(Data[0]);
+  // console.log(Data);
   return (
     <SafeAreaView style={{ marginTop: 0 }}>
       <FlatList
