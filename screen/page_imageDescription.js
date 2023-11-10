@@ -8,7 +8,7 @@ function Page_imageDescription({ route }) {
   return (
     <SafeAreaView>
       <Image
-        source={{ uri: 'file://' + path }}
+        source={{ uri: path }}
         style={{ width: 200, height: 200 }} // 이미지 크기 설정 (선택 사항)
       />
       <View>
@@ -21,6 +21,6 @@ function Page_imageDescription({ route }) {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 export default Page_imageDescription;

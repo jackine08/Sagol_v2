@@ -25,7 +25,7 @@ const Recent_images_grid_view = ({ navigation }) => {
       <FlatList
         data={localData}
         keyExtractor={(item) => item.name}
-        renderItem={({ item }) => <ImageItem path={item.path} name={item.name} navigation={navigation} />}
+        renderItem={({ item }) => <ImageItem path={"file://"+item.path} name={item.name} navigation={navigation} />}
         numColumns={2} // 여기에 numColumns 속성을 추가해 두 개의 열로 표시할 수 있도록 설정
         contentContainerStyle={styles.flatListContainer}
       />
