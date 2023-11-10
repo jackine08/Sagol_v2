@@ -1,0 +1,4 @@
+- git clone "https://github.com/jackine08/Sagol_v2.git"
+- npm i
+- 안드로이드 에뮬레이터 설치
+- npm run android
