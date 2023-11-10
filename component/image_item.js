@@ -8,7 +8,7 @@ function ImageItem({ navigation, path, name }) {
   useEffect(() => {
     const fetchDescription = async () => {
       try {
-        const storedDescription = await getItem(name);
+        const storedDescription = await getItem("file://"+path);
         setDescription(storedDescription);
       } catch (error) {
         console.error("Error fetching description:", error);

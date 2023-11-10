@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, PermissionsAndroid } from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
 import axios from 'axios';
 import RNFS from 'react-native-fs';
 import { setItem } from './storage';

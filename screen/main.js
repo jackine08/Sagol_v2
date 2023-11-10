@@ -11,7 +11,6 @@ function Page_Main({ navigation }) {
   return (
     <SafeAreaView >
       <StatusBar/>
-      {/* <Button_search></Button_search> */}
       <Search_best_images navigation={navigation}></Search_best_images>
       <ShowPicker></ShowPicker>
       <Recent_images_grid_view navigation={navigation}></Recent_images_grid_view>
