@@ -40,7 +40,7 @@ async function startImageUpload() {
 
       const formdata = new FormData();
       const fileData = await RNFS.readFile(resizedImage.path, 'base64');
-      console.log(resizedImage);
+      // console.log(resizedImage);
 
       formdata.append('Image', {
         name: file.name,
@@ -55,8 +55,9 @@ async function startImageUpload() {
       };
 
       const bf_res = await axios.post("http://minigpt4.hcailab.uos.ac.kr/getAltText", formdata, {headers});
+      console.log(bf_res.data);
       console.log(`Received data from AI for ${file.name}`);
-      setItem(file.name, bf_res.data[0].Description);
+      setItem("file://"+file.path, bf_res.data[0].Description);
 
       // Remove resized image after upload
       RNFS.unlink(resizedImage.path)

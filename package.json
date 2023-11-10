@@ -17,6 +17,7 @@
     "@react-navigation/native-stack": "6.9.13",
     "axios": "1.5.0",
     "fs": "0.0.1-security",
+    "natural": "6.8.0",
     "navigation": "6.2.0",
     "react": "17.0.2",
     "react-native": "0.68.2",
@@ -30,7 +31,8 @@
     "react-native-reanimated": "3.5.4",
     "react-native-safe-area-context": "4.7.2",
     "react-native-screens": "3.25.0",
-    "react-native-voice": "0.3.0"
+    "react-native-voice": "0.3.0",
+    "util": "0.12.5"
   },
   "devDependencies": {
     "@babel/core": "7.22.20",
