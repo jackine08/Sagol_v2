@@ -12,7 +12,7 @@ function Page_Results ({ route }) {
       <FlatList
         data={Data}
         keyExtractor={(item) => item}
-        renderItem={({ item }) => <Image source={{ uri: item}} style={styles.image}/>}
+        renderItem={({ item }) => <ImageItem path={item} name={item} navigation={route.params.navigation} />}
         numColumns={2} // 여기에 numColumns 속성을 추가해 두 개의 열로 표시할 수 있도록 설정
         contentContainerStyle={styles.flatListContainer}
       />

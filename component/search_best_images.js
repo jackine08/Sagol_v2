@@ -32,7 +32,7 @@ const SearchBestImages = ({ navigation }) => {
     return text.split(' ');
   };
 
-  const handleQuery = async () => {
+  const handleQuery = async (navigation) => {
     if (query.trim() === '') {
       setResults(['Query is empty']);
       return;
@@ -51,7 +51,7 @@ const SearchBestImages = ({ navigation }) => {
   
     setResults(topResults);
     // 페이지 전환
-    navigation.navigate('Page_Results', { results: topResults });
+    navigation.navigate('Page_Results', { results: topResults , navigation: navigation});
   };
 
   const calculateSimilarity = (queryTokens, itemTokens) => {
@@ -67,7 +67,7 @@ const SearchBestImages = ({ navigation }) => {
         value={query}
         onChangeText={(text) => setQuery(text)}
       />
-      <Button title="Search" onPress={() => {handleQuery()}}/>
+      <Button title="Search" onPress={() => {handleQuery(navigation)}}/>
     </View>
   );
 };
