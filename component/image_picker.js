@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, PermissionsAndroid } from 'react-native';
 import axios from 'axios';
 import RNFS from 'react-native-fs';
-import { setItem } from './storage';
+import { setItem, getItem } from './storage';
 import get_picture_data from './GalleryPicker';
 import ImageResizer from 'react-native-image-resizer';
 
@@ -29,39 +29,46 @@ async function requestStoragePermission() {
     console.warn(err);
   }
 }
+
 async function startImageUpload() {
   try {
     const files = await get_picture_data();
 
     const uploadPromises = files.map(async (file) => {
-      // Resize image before uploading
-      const resizedImage = await resizeImage(file.path, file.name);
+      // Check if the value exists in AsyncStorage before uploading
+      const existingDescription = await getItem("file://"+file.path);
 
-      const formdata = new FormData();
-      const fileData = await RNFS.readFile(resizedImage.path, 'base64');
-      // console.log(resizedImage);
+      if (!existingDescription) {
+        // Resize image before uploading
+        const resizedImage = await resizeImage(file.path, file.name);
 
-      formdata.append('Image', {
-        name: file.name,
-        type: 'image/jpeg',
-        uri: "file://"+resizedImage.path,
-      });
-      formdata.append('Hash', file.name);
-      formdata.append('Id', file.name);
+        const formdata = new FormData();
+        const fileData = await RNFS.readFile(resizedImage.path, 'base64');
 
-      const headers = {
-        'Content-Type': 'multipart/form-data',
-      };
+        formdata.append('Image', {
+          name: file.name,
+          type: 'image/jpeg',
+          uri: "file://"+resizedImage.path,
+        });
+        formdata.append('Hash', file.name);
+        formdata.append('Id', file.name);
 
-      const bf_res = await axios.post("http://minigpt4.hcailab.uos.ac.kr/getAltText", formdata, {headers});
-      console.log(bf_res.data);
-      console.log(`Received data from AI for ${file.name}`);
-      setItem("file://"+file.path, bf_res.data[0].Description);
+        const headers = {
+          'Content-Type': 'multipart/form-data',
+        };
 
-      // Remove resized image after upload
-      RNFS.unlink(resizedImage.path)
-        .then(() => console.log('Resized image removed'))
-        .catch((err) => console.error('Error removing resized image:', err));
+        const bf_res = await axios.post("http://minigpt4.hcailab.uos.ac.kr/getAltText", formdata, {headers});
+        console.log(bf_res.data);
+        console.log(`Received data from AI for ${file.name}`);
+        setItem("file://"+file.path, bf_res.data[0].Description);
+
+        // Remove resized image after upload
+        RNFS.unlink(resizedImage.path)
+          .then(() => console.log('Resized image removed'))
+          .catch((err) => console.error('Error removing resized image:', err));
+      } else {
+        console.log(`Description already exists for ${file.name}`);
+      }
     });
 
     await Promise.all(uploadPromises);
@@ -83,7 +90,6 @@ async function resizeImage(originalPath, fileName) {
 
   return { path: resizedPath, name: fileName };
 }
-
 
 const ShowPicker = () => {
   return (
