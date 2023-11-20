@@ -14,10 +14,9 @@ function Page_imageDescription({ route }) {
       <View>
         <Text>사진 설명: {description}</Text>
         <Button
-          title="다시 듣기"
-          onPress={() => Alert.alert('재생중')}
+          title="설명 다시 요청하기"
+          onPress={() => Alert.alert('잠시만 기다려주세용')}
         />
-        <Text>{name}</Text>
       </View>
     </SafeAreaView>
   );

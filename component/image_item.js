@@ -21,7 +21,7 @@ function ImageItem({ navigation, path, name }) {
   return (
     <TouchableOpacity onPress={() => navigation.navigate('Page_imageDescription', { path, description, name })}>
       <View style={styles.itemContainer}>
-        <Image source={{ uri: path }} style={styles.image} />
+        <Image source={{ uri: path }} style={styles.image} accessibilityLabel={description} />
       </View>
     </TouchableOpacity>
   );
