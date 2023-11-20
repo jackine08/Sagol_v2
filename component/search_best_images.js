@@ -32,7 +32,7 @@ const SearchBestImages = ({ navigation }) => {
     return text.split(' ');
   };
 
-  const handleQuery = async (navigation) => {
+  const handleQuery = async () => {
     if (query.trim() === '') {
       setResults(['Query is empty']);
       return;
@@ -51,8 +51,8 @@ const SearchBestImages = ({ navigation }) => {
   
     setResults(topResults);
     // 페이지 전환
-    navigation.navigate('Page_Results', { results: topResults , navigation: navigation});
-  };
+    navigation.navigate('Page_Results', { results: topResults });
+  };  
 
   const calculateSimilarity = (queryTokens, itemTokens) => {
     const commonTokens = itemTokens.filter((token) => queryTokens.includes(token));

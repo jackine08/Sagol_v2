@@ -11,9 +11,9 @@ async function get_picture_data() {
 
     try {
       const files_downloads = await RNFS.readDir(downloadsFolderPath);
-      const files_pictures = await RNFS.readDir(PicturesDirectoryPath);
-      const imageFiles_d = files_downloads.filter(file => file.isFile() && file.name.match(/\.(jpg|jpeg|png|gif)$/i));
-      const imageFiles_p = files_pictures.filter(file => file.isFile() && file.name.match(/\.(jpg|jpeg|png|gif)$/i));
+      // const files_pictures = await RNFS.readDir(PicturesDirectoryPath);
+      const imageFiles_d = files_downloads.filter(file => file.isFile() && file.name.match(/\.(jpg|jpeg)$/i));
+      // const imageFiles_p = files_pictures.filter(file => file.isFile() && file.name.match(/\.(jpg|jpeg|png|gif)$/i));
 
       // console.log(imageFiles);
 
@@ -25,12 +25,12 @@ async function get_picture_data() {
         });
       });
       
-      imageFiles_p.forEach(file => {
-        for_save.push({
-          "path": file.path,
-          "name": file.name
-        });
-      });
+      // imageFiles_p.forEach(file => {
+      //   for_save.push({
+      //     "path": file.path,
+      //     "name": file.name
+      //   });
+      // });
 
       return for_save;
     } catch (error) {
