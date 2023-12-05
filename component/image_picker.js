@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { React, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, PermissionsAndroid } from 'react-native';
 import axios from 'axios';
 import RNFS from 'react-native-fs';
