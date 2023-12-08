@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SearchBestImages = ({ navigation }) => {
@@ -62,11 +62,11 @@ const SearchBestImages = ({ navigation }) => {
     <View>
       <TextInput
         style={styles.input}
-        placeholder="Enter your query"
+        placeholder="검색어를 입력해주세요"
         value={query}
         onChangeText={(text) => setQuery(text)}
       />
-      <Button title="Search" onPress={() => {handleQuery(navigation)}}/>
+      <Button title="검색" onPress={() => {handleQuery(navigation)}}/>
     </View>
   );
 };

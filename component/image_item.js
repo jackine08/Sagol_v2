@@ -9,9 +9,13 @@ function ImageItem({ navigation, path, name }) {
     const fetchDescription = async () => {
       try {
         const storedDescription = await getItem(path);
-        
-        const parsedDescription = JSON.parse(storedDescription);
-        setDescription(parsedDescription["ko"]);
+
+        // Check if storedDescription is empty or not a valid JSON string
+        const parsedDescription = storedDescription
+          ? JSON.parse(storedDescription)["ko"]
+          : "설명 없음";
+
+        setDescription(parsedDescription);
       } catch (error) {
         console.error("Error fetching description:", error);
       }
@@ -34,8 +38,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     padding: 10,
     marginVertical: 8,
-    marginHorizontal: 8, // 여백을 줄여보자
-    borderRadius: 10, // 둥근 테두리 추가
+    marginHorizontal: 8,
+    borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    borderRadius: 8, // 이미지에도 둥근 테두리 추가
+    borderRadius: 8,
   },
 });
 
