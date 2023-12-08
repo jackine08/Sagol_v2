@@ -7,8 +7,8 @@ async function get_picture_data() {
   var for_save = [];
 
   if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-    const downloadsFolderPath = RNFS.DownloadDirectoryPath;
-
+    const downloadsFolderPath = RNFS.DownloadDirectoryPath + "/images_set";
+    console.log(downloadsFolderPath);
     try {
       const files_downloads = await RNFS.readDir(downloadsFolderPath);
       // const files_pictures = await RNFS.readDir(PicturesDirectoryPath);

@@ -13,10 +13,9 @@ const SearchBestImages = ({ navigation }) => {
       try {
         const keys = await AsyncStorage.getAllKeys();
         const items = await AsyncStorage.multiGet(keys);
-
         const tokenizedItems = items.map(([key, value]) => ({
           key,
-          tokens: tokenize(value),
+          tokens: tokenize(JSON.parse(value)["en"]),
         }));
 
         setTFMatrix(tokenizedItems);

@@ -9,7 +9,9 @@ function ImageItem({ navigation, path, name }) {
     const fetchDescription = async () => {
       try {
         const storedDescription = await getItem(path);
-        setDescription(storedDescription);
+        
+        const parsedDescription = JSON.parse(storedDescription);
+        setDescription(parsedDescription["ko"]);
       } catch (error) {
         console.error("Error fetching description:", error);
       }

@@ -14,7 +14,6 @@ function Page_Main({ navigation }) {
       <Search_best_images navigation={navigation}></Search_best_images>
       <ShowPicker></ShowPicker>
       <Recent_images_grid_view navigation={navigation}></Recent_images_grid_view>
-
     </SafeAreaView>
   );
 }
