@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 const SearchBestImages = ({ navigation }) => {
   const [query, setQuery] = useState('');
@@ -28,7 +29,10 @@ const SearchBestImages = ({ navigation }) => {
   }, []);
 
   const tokenize = (text) => {
-    return text.split(' ');
+    // 모든 영어 문자를 소문자로 변환하고, 쉼표와 마침표를 제거
+    const cleanedText = text.toLowerCase().replace(/[.,]/g, '');
+    // 공백을 기준으로 문자열을 분리하여 배열로 반환
+    return cleanedText.split(' ');
   };
 
   const handleQuery = async () => {
@@ -36,9 +40,14 @@ const SearchBestImages = ({ navigation }) => {
       setResults(['Query is empty']);
       return;
     }
-  
-    const queryTokens = tokenize(query);
-  
+    const translationResponse = await axios.post('http://minigpt4.hcailab.uos.ac.kr/translate', {
+        query: query
+      });
+    
+    // 번역된 텍스트를 토큰화
+    const queryTokens = tokenize(translationResponse.data);
+    console.log('Tokenized Response:', queryTokens);
+    
     // 가장 유사한 키 찾기
     const sortedResults = tfMatrix.map((item) => ({
       key: item.key,
