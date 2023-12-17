@@ -13,10 +13,10 @@ function Page_imageDescription({ route }) {
       />
       <View>
         <Text>사진 설명: {description}</Text>
-        <Button
+        {/* <Button
           title="설명 다시 요청하기"
           onPress={() => Alert.alert('잠시만 기다려주세용')}
-        />
+        /> */}
       </View>
     </SafeAreaView>
   );
