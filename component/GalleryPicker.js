@@ -8,6 +8,8 @@ async function get_picture_data() {
 
   if (granted === PermissionsAndroid.RESULTS.GRANTED) {
     const downloadsFolderPath = RNFS.DownloadDirectoryPath + "/images_set";
+    // const downloadsFolderPath = RNFS.PicturesDirectoryPath+"/일본사진"
+
     console.log(downloadsFolderPath);
     try {
       const files_downloads = await RNFS.readDir(downloadsFolderPath);
