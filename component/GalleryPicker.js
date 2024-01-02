@@ -7,7 +7,7 @@ async function get_picture_data() {
   var for_save = [];
 
   if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-    const downloadsFolderPath = RNFS.DownloadDirectoryPath + "/images_set";
+    const downloadsFolderPath = RNFS.DownloadDirectoryPath;
     // const downloadsFolderPath = RNFS.PicturesDirectoryPath+"/일본사진"
 
     console.log(downloadsFolderPath);
